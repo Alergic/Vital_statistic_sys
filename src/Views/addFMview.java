@@ -21,11 +21,11 @@ import javax.swing.border.EmptyBorder;
 public class addFMview extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	public static JTextField textField;
+	public static JTextField textField_2;
+	public static JTextField textField_3;
+	public static JTextField textField_4;
+	public static JTextField textField_5;
 	/**
 	 * Launch the application.
 	 */
@@ -165,6 +165,7 @@ public class addFMview extends JDialog {
 							JDBC.list1_2.add(FMmodifyview.id);
 							int temp=Integer.parseInt(JDBC.list7_1.get(FMmodifyview.n));
 							JDBC.list7_1.set(FMmodifyview.n,String.valueOf(temp+1));
+							JDBC.dbinsertPerson(3);
 							dispose();
 						}
 					});

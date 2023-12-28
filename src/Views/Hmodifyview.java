@@ -45,7 +45,7 @@ public class Hmodifyview extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Omodifyview frame = new Omodifyview();
+					Hmodifyview frame = new Hmodifyview();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,9 +54,6 @@ public class Hmodifyview extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Hmodifyview() {
 		int record[]=new int[100];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,7 +163,7 @@ public class Hmodifyview extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("增加操作员");
+		JButton btnNewButton_1 = new JButton("增加户主");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new addHview().setVisible(true);
@@ -174,7 +171,7 @@ public class Hmodifyview extends JFrame {
 		});
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		
-		JButton btnNewButton_2 = new JButton("删除操作员");
+		JButton btnNewButton_2 = new JButton("删除户主");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (flag!=-1)
@@ -241,7 +238,6 @@ public class Hmodifyview extends JFrame {
 				{
 						for(int i=0;i<j;i++)
 						{
-							
 						    	container_1[i][0]=JDBC.list1_1.get(record[i]);
 						    	container_1[i][1]=JDBC.list2_1.get(record[i]);
 						    	container_1[i][2]=JDBC.list3_1.get(record[i]);
@@ -269,6 +265,8 @@ public class Hmodifyview extends JFrame {
 			}
 		});
 		btnNewButton_5.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -326,9 +324,7 @@ public class Hmodifyview extends JFrame {
 						.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
-		
-		
-	
+
 		contentPane.setLayout(gl_contentPane);
 	}
 }

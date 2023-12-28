@@ -21,13 +21,13 @@ import javax.swing.border.EmptyBorder;
 public class addHview extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	public static JTextField textField;
+	public static JTextField textField_1;
+	public static JTextField textField_2;
+	public static JTextField textField_3;
+	public static JTextField textField_4;
+	public static JTextField textField_5;
+	public static JTextField textField_6;
 	/**
 	 * Launch the application.
 	 */
@@ -63,7 +63,7 @@ public class addHview extends JDialog {
 		});
 		comboBox.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"男", "女"}));
-		JLabel lblNewLabel_3 = new JLabel("操作员性别");
+		JLabel lblNewLabel_3 = new JLabel("户主性别");
 		lblNewLabel_3.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		JLabel lblNewLabel_4 = new JLabel("户主电话");
 		lblNewLabel_4.setFont(new Font("微软雅黑", Font.PLAIN, 15));
@@ -216,6 +216,7 @@ public class addHview extends JDialog {
 							JDBC.list5_1.add(textField_4.getText());
 							JDBC.list6_1.add(textField_3.getText());
 							JDBC.list7_1.add(textField_5.getText());
+							JDBC.dbinsertPerson(2);
 							dispose();
 						}
 					});

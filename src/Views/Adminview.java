@@ -40,7 +40,7 @@ public class Adminview extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, 37, SpringLayout.NORTH, contentPane);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("操控员信息");
+		JButton btnNewButton = new JButton("操作员信息");
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, 242, SpringLayout.WEST, contentPane);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

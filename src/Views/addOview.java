@@ -179,7 +179,7 @@ public class addOview extends JDialog {
 							JDBC.list5.add(textField_4.getText());
 							JDBC.list6.add(textField_3.getText());
 							JDBC.list7.add(textField_5.getText());
-							//JDBC.dbinsertPerson();
+							JDBC.dbinsertPerson(1);
 							dispose();
 						}
 					});

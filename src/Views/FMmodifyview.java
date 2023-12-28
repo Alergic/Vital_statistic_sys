@@ -374,6 +374,7 @@ public class FMmodifyview extends JFrame {
 			}
 		));
 		scrollPane.setViewportView(table);*/
+
 		contentPane.setLayout(gl_contentPane);
 	}
 }
