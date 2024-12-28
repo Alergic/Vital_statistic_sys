@@ -144,33 +144,41 @@ public class Omodifyview extends JFrame {
 				new addOview().setVisible(true);
 			}
 		});
+
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 
 		JButton btnNewButton_2 = new JButton("删除操作员");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (flag != -1) {
-					// 获取要删除的操作员ID
-					String operatorId = JDBC.list1.get(flag);
+						// 在删除操作前添加确认
+						int result = JOptionPane.showConfirmDialog(null,
+								"确定要删除该操作员吗？",
+								"确认删除",
+								JOptionPane.YES_NO_OPTION);
+						if (result == JOptionPane.YES_OPTION){
+							// 获取要删除的操作员ID
+							String operatorId = JDBC.list1.get(flag);
 
-					// 从lists中删除数据
-					JDBC.list1.remove(flag);
-					JDBC.list2.remove(flag);
-					JDBC.list3.remove(flag);
-					JDBC.list4.remove(flag);
-					JDBC.list5.remove(flag);
-					JDBC.list6.remove(flag);
-					JDBC.list7.remove(flag);
+							// 从lists中删除数据
+							JDBC.list1.remove(flag);
+							JDBC.list2.remove(flag);
+							JDBC.list3.remove(flag);
+							JDBC.list4.remove(flag);
+							JDBC.list5.remove(flag);
+							JDBC.list6.remove(flag);
+							JDBC.list7.remove(flag);
 
-					// 从数据库中删除操作员的调用
-					JDBC.dbdeletePerson(1, operatorId, null, 0);
+							// 从数据库中删除操作员的调用
+							JDBC.dbdeletePerson(1, operatorId, null, 0);
 
-					// 更新表格显示
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					model.removeRow(flag);
+							// 更新表格显示
+							DefaultTableModel model = (DefaultTableModel) table.getModel();
+							model.removeRow(flag);
 
-					JOptionPane.showMessageDialog(null, "删除成功！");
-					flag = -1;
+							JOptionPane.showMessageDialog(null, "删除成功！");
+							flag = -1;
+						}
 				} else {
 					JOptionPane.showMessageDialog(null, "你尚未选中任何行！");
 				}

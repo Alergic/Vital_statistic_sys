@@ -206,32 +206,39 @@ public class FMmodifyview extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (flag != -1) {
-					// 获取要删除的家庭成员ID
-					String memberId = JDBC.list3_2.get(record[flag]);  // 家庭成员ID
-					String familyId = JDBC.list1_2.get(record[flag]);  // 户主ID
+					// 在删除操作前添加确认
+					int result = JOptionPane.showConfirmDialog(null,
+							"确定要删除该家庭成员吗？",
+							"确认删除",
+							JOptionPane.YES_NO_OPTION);
+					if (result == JOptionPane.YES_OPTION) {
+						// 获取要删除的家庭成员ID
+						String memberId = JDBC.list3_2.get(record[flag]);  // 家庭成员ID
+						String familyId = JDBC.list1_2.get(record[flag]);  // 户主ID
 
-					// 从lists中删除数据
-					JDBC.list1_2.remove(record[flag]);
-					JDBC.list2_2.remove(record[flag]);
-					JDBC.list3_2.remove(record[flag]);
-					JDBC.list4_2.remove(record[flag]);
-					JDBC.list5_2.remove(record[flag]);
-					JDBC.list6_2.remove(record[flag]);
-					JDBC.list7_2.remove(record[flag]);
+						// 从lists中删除数据
+						JDBC.list1_2.remove(record[flag]);
+						JDBC.list2_2.remove(record[flag]);
+						JDBC.list3_2.remove(record[flag]);
+						JDBC.list4_2.remove(record[flag]);
+						JDBC.list5_2.remove(record[flag]);
+						JDBC.list6_2.remove(record[flag]);
+						JDBC.list7_2.remove(record[flag]);
 
-					// 更新户主家庭成员数量
-					int temp = Integer.parseInt(JDBC.list7_1.get(FMmodifyview.n));
-					JDBC.list7_1.set(FMmodifyview.n, String.valueOf(temp-1));
+						// 更新户主家庭成员数量
+						int temp = Integer.parseInt(JDBC.list7_1.get(FMmodifyview.n));
+						JDBC.list7_1.set(FMmodifyview.n, String.valueOf(temp-1));
 
-					// 从数据库中删除家庭成员的调用
-					JDBC.dbdeletePerson(2, memberId, familyId, temp-1);
+						// 从数据库中删除家庭成员的调用
+						JDBC.dbdeletePerson(2, memberId, familyId, temp-1);
 
-					// 更新表格显示
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					model.removeRow(flag);
+						// 更新表格显示
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						model.removeRow(flag);
 
-					JOptionPane.showMessageDialog(null, "删除成功！");
-					flag = -1;
+						JOptionPane.showMessageDialog(null, "删除成功！");
+						flag = -1;
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "你尚未选中任何行！");
 				}
