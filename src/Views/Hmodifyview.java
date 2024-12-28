@@ -97,7 +97,7 @@ public class Hmodifyview extends JFrame {
 			{null, null, null, null, null, null, null,null},
 			{null, null, null, null, null, null, null,null}};
 		Tableheader=new Object[]{
-				"\u6237\u4E3B\u59D3\u540D", "\u6237\u4E3Bid", "\u6237\u4e3b\u6027\u522b", "\u6237\u4E3B\u5730\u5740", "\u6237\u4E3B\u4F4F\u5B85\u9762\u79EF", "\u6237\u4E3B\u7535\u8BDD", "\u6237\u4E3B\u5BB6\u5EAD\u6210\u5458\u6570\u91CF", "\u6237\u4E3B\u5DE5\u4F5C\u5F52\u5C5E\u5730"
+				"\u6237\u4E3B\u59D3\u540D", "\u6237\u4E3Bid", "\u6237\u4e3b\u6027\u522b", "\u6237\u4E3B\u5730\u5740", "\u6237\u4E3B\u4F4F\u5B85\u9762\u79EF", "\u6237\u4E3B\u7535\u8BDD", "\u6237\u4E3B\u5BB6\u5EAD\u6210\u5458\u6570\u91CF", "\u6237\u4E3B\u8D2B\u56F0\u79CD\u7C7B"
 			};
 		i=JDBC.list1_1.size();
 		r=0;

@@ -163,7 +163,6 @@ public class JDBC {
 			}
 
 		} catch (ClassNotFoundException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();

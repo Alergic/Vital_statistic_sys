@@ -7,25 +7,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class StartView extends JFrame {
 
 	private JPanel contentPane;
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					StartView frame = new StartView();
+					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 					frame.setVisible(true);
-					Music music =new Music("D:\\Gas\\Music\\321对不起.wav");
+					Music music =new Music("src/星光倾诉.wav");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,6 +44,8 @@ public class StartView extends JFrame {
 		getContentPane().setLayout(springLayout);
 		
 		JButton btnNewButton = new JButton("以管理员登录");
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 363, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -395, SpringLayout.EAST, getContentPane());
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -56,8 +55,6 @@ public class StartView extends JFrame {
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setBackground(UIManager.getColor("Button.background"));
 		btnNewButton.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 363, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -395, SpringLayout.EAST, getContentPane());
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("以操作员登录");
@@ -82,7 +79,7 @@ public class StartView extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 312, SpringLayout.WEST, contentPane);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, 112, SpringLayout.NORTH, contentPane);
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -327, SpringLayout.EAST, contentPane);
-		lblNewLabel.setFont(new Font("华文楷体", Font.BOLD, 42));
+		lblNewLabel.setFont(new Font("宋体", Font.BOLD, 42));
 		getContentPane().add(lblNewLabel);
 	}
 

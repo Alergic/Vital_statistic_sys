@@ -54,8 +54,11 @@ public class addHview extends JDialog {
 		lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		JLabel lblNewLabel_2 = new JLabel("户主姓名");
 		lblNewLabel_2.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		JLabel lblNewLabel_2_1 = new JLabel("户主贫困情况");
+
+		JLabel lblNewLabel_2_1 = new JLabel("户主贫困等级");
 		lblNewLabel_2_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,6 +68,7 @@ public class addHview extends JDialog {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"男", "女"}));
 		JLabel lblNewLabel_3 = new JLabel("户主性别");
 		lblNewLabel_3.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+
 		JLabel lblNewLabel_4 = new JLabel("户主电话");
 		lblNewLabel_4.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		JLabel lblNewLabel_2_1_1 = new JLabel("户主住址");
@@ -84,7 +88,7 @@ public class addHview extends JDialog {
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("户主面积");
+		JLabel lblNewLabel_5 = new JLabel("户主住宅面积");
 		lblNewLabel_5.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		
 		textField_4 = new JTextField();
@@ -95,6 +99,8 @@ public class addHview extends JDialog {
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
+
+
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
