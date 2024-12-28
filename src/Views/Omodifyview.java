@@ -25,6 +25,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Dimension;
+import java.awt.Component;
 
 public class Omodifyview extends JFrame {
 
@@ -141,32 +145,39 @@ public class Omodifyview extends JFrame {
 			}
 		});
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		
+
 		JButton btnNewButton_2 = new JButton("删除操作员");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (flag!=-1)
-				{	
-						JDBC.list1.remove(flag);
-						JDBC.list2.remove(flag);
-						JDBC.list3.remove(flag);
-						JDBC.list4.remove(flag);
-						JDBC.list5.remove(flag);
-						JDBC.list6.remove(flag);
-						JDBC.list7.remove(flag);
-						JOptionPane.showMessageDialog(null, "删除成功！");
-					flag=-1;
-				}
-				else
-				{
+				if (flag != -1) {
+					// 获取要删除的操作员ID
+					String operatorId = JDBC.list1.get(flag);
+
+					// 从lists中删除数据
+					JDBC.list1.remove(flag);
+					JDBC.list2.remove(flag);
+					JDBC.list3.remove(flag);
+					JDBC.list4.remove(flag);
+					JDBC.list5.remove(flag);
+					JDBC.list6.remove(flag);
+					JDBC.list7.remove(flag);
+
+					// 从数据库中删除操作员的调用
+					JDBC.dbdeletePerson(1, operatorId, null, 0);
+
+					// 更新表格显示
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.removeRow(flag);
+
+					JOptionPane.showMessageDialog(null, "删除成功！");
+					flag = -1;
+				} else {
 					JOptionPane.showMessageDialog(null, "你尚未选中任何行！");
 				}
-				
-				
 			}
 		});
 		btnNewButton_2.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		
+
 		JButton btnNewButton_3 = new JButton("修改操作员");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -170,12 +170,22 @@ public class Hmodifyview extends JFrame {
 			}
 		});
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		
+
+
 		JButton btnNewButton_2 = new JButton("删除户主");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (flag!=-1)
-				{
+				if (flag != -1) {
+					// 在删除操作前添加确认
+					int result = JOptionPane.showConfirmDialog(null, 
+						"删除户主将同时删除其所有家庭成员，确定要继续吗？", 
+						"确认删除", 
+						JOptionPane.YES_NO_OPTION);
+					if (result == JOptionPane.YES_OPTION) {
+						// 获取要删除的户主ID
+						String householderId = JDBC.list2_1.get(flag);
+
+						// 从lists中删除数据
 						JDBC.list1_1.remove(flag);
 						JDBC.list2_1.remove(flag);
 						JDBC.list3_1.remove(flag);
@@ -184,15 +194,20 @@ public class Hmodifyview extends JFrame {
 						JDBC.list6_1.remove(flag);
 						JDBC.list7_1.remove(flag);
 						JDBC.list8_1.remove(flag);
+
+						// 从数据库中删除户主及其家庭成员
+						JDBC.dbdeletePerson(3, householderId, null, 0);
+
+						// 更新表格显示
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						model.removeRow(flag);
+
 						JOptionPane.showMessageDialog(null, "删除成功！");
-					flag=-1;
-				}
-				else
-				{
+						flag = -1;
+					}
+				} else {
 					JOptionPane.showMessageDialog(null, "你尚未选中任何行！");
 				}
-				
-				
 			}
 		});
 		btnNewButton_2.setFont(new Font("微软雅黑", Font.PLAIN, 15));

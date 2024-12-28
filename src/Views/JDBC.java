@@ -2,6 +2,8 @@ package Views;
 import java.sql.*;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class JDBC {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
     static final String DB_URL = "jdbc:mysql://localhost:3306/vital_statisticsdb";
@@ -172,4 +174,83 @@ public class JDBC {
     	}
 	}
 
+	public static void dbdeletePerson(int type, String id, String familyId, int newCount) {
+		Connection conn = null;
+		try {
+			// 获取数据库连接
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			// 开启事务
+			conn.setAutoCommit(false);
+
+			try {
+				PreparedStatement pstmt = null;
+
+				switch(type) {
+					case 1: // 删除操作员
+						String sql1 = "DELETE FROM operator WHERE Oid = ?";
+						pstmt = conn.prepareStatement(sql1);
+						pstmt.setString(1, id);
+						pstmt.executeUpdate();
+						break;
+
+					case 2: // 删除家庭成员
+						// 删除家庭成员
+						String sql2 = "DELETE FROM familymember WHERE FMid = ?";
+						pstmt = conn.prepareStatement(sql2);
+						pstmt.setString(1, id);
+						pstmt.executeUpdate();
+
+						// 更新户主表中的家庭成员数量
+						String sql3 = "UPDATE householder SET HFquantity = ? WHERE Hid = ?";
+						PreparedStatement pstmt2 = conn.prepareStatement(sql3);
+						pstmt2.setInt(1, newCount);
+						pstmt2.setString(2, familyId);
+						pstmt2.executeUpdate();
+						pstmt2.close();
+						break;
+
+					case 3: // 删除户主
+						// 先删除该户主下的所有家庭成员
+						String sql4 = "DELETE FROM familymember WHERE Hid = ?";
+						pstmt = conn.prepareStatement(sql4);
+						pstmt.setString(1, id);
+						pstmt.executeUpdate();
+
+						// 再删除户主
+						String sql5 = "DELETE FROM householder WHERE Hid = ?";
+						PreparedStatement pstmt3 = conn.prepareStatement(sql5);
+						pstmt3.setString(1, id);
+						pstmt3.executeUpdate();
+						pstmt3.close();
+						break;
+				}
+
+				// 提交事务
+				conn.commit();
+
+				if(pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				// 发生错误时回滚事务
+				conn.rollback();
+				throw e;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "删除失败：" + e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.setAutoCommit(true);  // 恢复自动提交
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
+
